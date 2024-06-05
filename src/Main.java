@@ -17,6 +17,9 @@ public class Main {
 
         arbol.AgregarElem(9);
         arbol.AgregarElem(11);
+        arbol.AgregarElem(15);
+        arbol.AgregarElem(12);
+        arbol.AgregarElem(16);
         //System.out.println(funcarb.anchoIzq(arbol));
         //System.out.println(funcarb.anchoDer(arbol));}
         System.out.println("Ancho total: " + funcarb.anchoArbol(arbol) + " Ancho Rama izq: " + funcarb.anchoIzq(arbol) + " Ancho rama der: " + funcarb.anchoDer(arbol));
