@@ -12,9 +12,12 @@ public class Main {
         arbol.AgregarElem(8);
         //System.out.println(funcarb.anchoIzq(arbol));
         arbol.AgregarElem(7);
+        //arbol.AgregarElem(8);
+        arbol.AgregarElem(10);
         arbol.AgregarElem(11);
         //System.out.println(funcarb.anchoIzq(arbol));
         //System.out.println(funcarb.anchoDer(arbol));}
         System.out.println("Ancho total: " + funcarb.anchoArbol(arbol) + " Ancho Rama izq: " + funcarb.anchoIzq(arbol) + " Ancho rama der: " + funcarb.anchoDer(arbol));
+        System.out.println(funcarb.altArbol(arbol));
     }
 }

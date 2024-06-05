@@ -5,6 +5,7 @@ public class MainABB {
     int ancho;
     int anchoIz;
     int anchoDe;
+    int alt;
 
     public TDAABB buscarElementoEnABB(TDAABB t, int x){
         if (t.ArbolVacio()){
@@ -52,4 +53,23 @@ public class MainABB {
         }
 
     }
+
+    public int altArbol(TDAABB t){
+
+        if(!t.ArbolVacio()){
+            alt++;
+            //System.out.println(t.Raiz());
+            if (t.HijoIzq().ArbolVacio() && t.HijoDer().ArbolVacio()){
+                alt--;
+            }
+            altArbol(t.HijoIzq());
+            altArbol(t.HijoDer());
+
+        }
+
+
+
+        return alt + 1;
+    }
+
 }

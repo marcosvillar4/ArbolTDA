@@ -35,7 +35,10 @@ public class ABB implements TDAABB {
             raiz.hijoIzq.AgregarElem(x);
         } else if (raiz.dato < x) {
             raiz.hijoDer.AgregarElem(x);
+        } else if (raiz.dato == x) {
+            raiz.hijoIzq.AgregarElem(x);
         }
+
     }
 
     public void EliminarElem(int x) {
