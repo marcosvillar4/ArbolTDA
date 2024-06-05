@@ -1,6 +1,11 @@
 package ABB;
 
 public class MainABB {
+
+    int ancho;
+    int anchoIz;
+    int anchoDe;
+
     public TDAABB buscarElementoEnABB(TDAABB t, int x){
         if (t.ArbolVacio()){
             return null;
@@ -9,7 +14,42 @@ public class MainABB {
         } else if (t.Raiz() > x) {
             return this.buscarElementoEnABB(t.HijoIzq(), x);
         } else {
-            return  this.buscarElementoEnABB(t.HijoDer(), x);
+            return this.buscarElementoEnABB(t.HijoDer(), x);
         }
+    }
+
+    public void graficarABB(TDAABB t){
+
+    }
+
+    public int anchoArbol(TDAABB t){
+        return 0;
+    }
+
+    public int anchoIzq(TDAABB t){
+        if (t.ArbolVacio()){
+            int temp = anchoIz - 1;
+            anchoIz = 0;
+            return temp;
+        }
+        else {
+            anchoIz++;
+            return anchoIzq(t.HijoIzq());
+        }
+
+    }
+
+    public int anchoDer(TDAABB t){
+
+        if (t.ArbolVacio()){
+            int temp = anchoDe - 1;
+            anchoDe = 0;
+            return temp;
+        }
+        else {
+            anchoDe++;
+            return anchoDer(t.HijoDer());
+        }
+
     }
 }
