@@ -23,7 +23,7 @@ public class MainABB {
     }
 
     public int anchoArbol(TDAABB t){
-        return 0;
+        return anchoDer(t) + anchoIzq(t) + 1;
     }
 
     public int anchoIzq(TDAABB t){
