@@ -19,6 +19,8 @@ public class Main {
         //System.out.println(funcarb.anchoDer(arbol));}
         System.out.println("Ancho total: " + funcarb.anchoArbol(arbol) + " Ancho Rama izq: " + funcarb.anchoIzq(arbol) + " Ancho rama der: " + funcarb.anchoDer(arbol));
         System.out.println(funcarb.altArbol(arbol));
-        System.out.println(funcarb.altArbol(arbol));
+        //System.out.println(funcarb.altArbol(arbol));
+
+        funcarb.graficarABB(arbol);
     }
 }
