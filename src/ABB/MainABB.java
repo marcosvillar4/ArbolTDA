@@ -54,7 +54,7 @@ public class MainABB {
 
     }
 
-    public int altArbol(TDAABB t){
+    private int altArbolRec(TDAABB t){
 
         if(!t.ArbolVacio()){
             alt++;
@@ -62,13 +62,19 @@ public class MainABB {
             if (t.HijoIzq().ArbolVacio() && t.HijoDer().ArbolVacio()){
                 alt--;
             }
-            altArbol(t.HijoIzq());
-            altArbol(t.HijoDer());
+            altArbolRec(t.HijoIzq());
+            altArbolRec(t.HijoDer());
 
         }
 
 
 
+        return alt + 1;
+    }
+
+    public int altArbol(TDAABB t){
+        alt = 0;
+        altArbolRec(t);
         return alt + 1;
     }
 
