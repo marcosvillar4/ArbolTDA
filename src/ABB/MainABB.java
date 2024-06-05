@@ -24,40 +24,46 @@ public class MainABB {
     public void graficarABB(TDAABB t){
         System.out.println(anchoArbol(t));
         System.out.println(altArbol(t));
-        String[][] grafMat = new String[anchoArbol(t)][altArbol(t)];
+        String[][] dataMat = new String[anchoArbol(t)][altArbol(t)];
+        String[][] fMat = new String[anchoArbol(t)][altArbol(t)];
 
 
-        grafMat[anchoDer(t)][0] = String.valueOf(t.Raiz());
-        //System.out.println(Arrays.deepToString(grafMat));
-        matVal(grafMat, t, anchoDer(t), 0);
+        dataMat[anchoDer(t)][0] = String.valueOf(t.Raiz());
+        //System.out.println(Arrays.deepToString(dataMat));
+        matVal(dataMat, t, anchoDer(t), 0, fMat);
         for (int i = 0; i < altArbol(t) + 1; i++) {
             for (int j = 0; j < anchoArbol(t) - 1; j++) {
-                if (grafMat[i][j] == null){
-                    grafMat[i][j] = "  ";
+                if (dataMat[i][j] == null){
+                    dataMat[i][j] = "  ";
+                }if (fMat[i][j] == null){
+                    fMat[i][j] = "  ";
                 }
+
             }
-            System.out.println(Arrays.toString(grafMat[i]));
+
+            System.out.println(Arrays.toString(dataMat[i]).replaceAll("[],]+", " ").replace("[" ," "));
+            System.out.println(Arrays.toString(fMat[i]).replaceAll("[],]+", " ").replace("[", " "));
         }
 
 
     }
 
-    private void matVal(String[][] grafMat, TDAABB t, int x, int y){
+    private void matVal(String[][] dataMat, TDAABB t, int x, int y, String[][] fMat){
         if(!t.ArbolVacio()){
             try {
-                grafMat[x + 1][y + 1] = String.valueOf(t.HijoIzq().Raiz());
-                grafMat[x + 1][y] = " \u2198";
+                dataMat[x + 1][y + 1] = String.valueOf(t.HijoIzq().Raiz());
+                fMat[x][y] = "  \u2198";
             } catch (Exception ignored) {
 
             }
             try {
-                grafMat[x - 1][y + 1] = String.valueOf(t.HijoDer().Raiz());
-                grafMat[x - 1][y] = " \u2197";
+                dataMat[x - 1][y + 1] = String.valueOf(t.HijoDer().Raiz());
+                fMat[x - 1][y] = "  \u2197";
             } catch (Exception ignored) {
 
             }
-            matVal(grafMat, t.HijoIzq(), x + 1, y + 1);
-            matVal(grafMat, t.HijoDer(), x - 1, y + 1);
+            matVal(dataMat, t.HijoIzq(), x + 1, y + 1, fMat);
+            matVal(dataMat, t.HijoDer(), x - 1, y + 1, fMat);
         }
     }
 
