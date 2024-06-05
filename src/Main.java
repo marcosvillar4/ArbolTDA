@@ -14,6 +14,8 @@ public class Main {
         arbol.AgregarElem(7);
         //arbol.AgregarElem(8);
         arbol.AgregarElem(10);
+
+        arbol.AgregarElem(9);
         arbol.AgregarElem(11);
         //System.out.println(funcarb.anchoIzq(arbol));
         //System.out.println(funcarb.anchoDer(arbol));}

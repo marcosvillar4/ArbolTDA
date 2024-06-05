@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 public class MainABB {
 
-    int ancho;
     int anchoIz;
     int anchoDe;
     int alt;
@@ -29,20 +28,21 @@ public class MainABB {
 
 
         dataMat[anchoDer(t)][0] = String.valueOf(t.Raiz());
-        //System.out.println(Arrays.deepToString(dataMat));
         matVal(dataMat, t, anchoDer(t), 0, fMat);
-        for (int i = 0; i < altArbol(t) + 1; i++) {
-            for (int j = 0; j < anchoArbol(t) - 1; j++) {
+        for (int i = 0; i < anchoArbol(t); i++) {
+            /*for (int j = 0; j < anchoArbol(t); j++) {
                 if (dataMat[i][j] == null){
                     dataMat[i][j] = "  ";
                 }if (fMat[i][j] == null){
                     fMat[i][j] = "  ";
                 }
 
-            }
+            }*/
+            String dataString = Arrays.toString(dataMat[i]).replaceAll("[],]+", "  ").replace("[" ," ");
 
-            System.out.println(Arrays.toString(dataMat[i]).replaceAll("[],]+", " ").replace("[" ," "));
-            System.out.println(Arrays.toString(fMat[i]).replaceAll("[],]+", " ").replace("[", " "));
+            System.out.println(dataString.replace("null", "  "));
+            String fString = Arrays.toString(fMat[i]).replaceAll("[],]+", "  ").replace("[", " ");
+            System.out.println(fString.replace("null", "   "));
         }
 
 
