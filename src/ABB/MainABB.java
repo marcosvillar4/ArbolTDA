@@ -4,10 +4,25 @@ import java.util.Arrays;
 
 public class MainABB {
 
-    int ancho;
     int anchoIz;
     int anchoDe;
     int alt;
+
+    /*
+
+        Clase de funciones extra para arboles:
+
+        TODO: Ver matVal, Metodo para comparacion de estructuras de arboles
+
+
+
+
+
+
+     */
+
+
+
 
     public TDAABB buscarElementoEnABB(TDAABB t, int x){
         if (t.ArbolVacio()){
@@ -22,57 +37,100 @@ public class MainABB {
     }
 
     public void graficarABB(TDAABB t){
-        System.out.println(anchoArbol(t));
-        System.out.println(altArbol(t));
-        String[][] dataMat = new String[anchoArbol(t)][altArbol(t)]; 
-        String[][] fMat = new String[anchoArbol(t)][altArbol(t)]; 
+        /*
 
+            Metodo para graficar el arbol:
+            1) Creamos una matriz para los valores y una para las direcciones
+            2) Agregamos como primer valor la raiz, esta va ser nuestra posicion base para movernos
+            3) Llamamos a la funcion matVal para cargar los valores a las matrices
+
+
+        */
+        String[][] dataMat = new String[anchoArbol(t)][altArbol(t)];
+        String[][] fMat = new String[anchoArbol(t)][altArbol(t)];
 
         dataMat[anchoDer(t)][0] = String.valueOf(t.Raiz());
-        //System.out.println(Arrays.deepToString(dataMat));
         matVal(dataMat, t, anchoDer(t), 0, fMat);
-        for (int i = 0; i < altArbol(t) + 1; i++) {
-            for (int j = 0; j < anchoArbol(t) - 1; j++) {
-                if (dataMat[i][j] == null){
-                    dataMat[i][j] = "  ";
-                }if (fMat[i][j] == null){
-                    fMat[i][j] = "  ";
-                }
 
-            }
+        /*
+        for (int i = 0; i < anchoArbol(t); i++) {
+            System.out.println(Arrays.toString(dataMat[i]).replace("null", "   "));
+        }
 
-            System.out.println(Arrays.toString(dataMat[i]).replaceAll("[],]+", " ").replace("[" ," "));
-            System.out.println(Arrays.toString(fMat[i]).replaceAll("[],]+", " ").replace("[", " "));
+        Graficar matriz cruda
+
+        */
+
+
+        for (int i = 0; i < anchoArbol(t); i++) {       // Preparamos e imprimimos la matriz
+            String dataString = Arrays.toString(dataMat[i]).replaceAll("[],]+", "  ").replace("[" ," ");
+            System.out.println(dataString.replace("null", "  "));
+            String fString = Arrays.toString(fMat[i]).replaceAll("[],]+", "  ").replace("[", " ");
+            System.out.println(fString.replace("null", "   "));
         }
 
 
     }
 
     private void matVal(String[][] dataMat, TDAABB t, int x, int y, String[][] fMat){
+
+        /*
+
+            Metodo para cargar los valores a las matrices, tenemos como argumentos las matrices que generamos antes, el arbol
+            y las coordenadas de la raiz en la matriz data
+
+            Utiliza metodo de pre-orden para iterar
+
+            EJ
+
+                      17
+                    ↗
+                 15              [null, null,   17]     [ , ↗, ]
+               ↗    ↘            [null,   15, null]     [↗, ↘, ]
+            10        12     ==  [  10, null,   12]     [↘,  , ]
+               ↘                 [null,    9, null]     [ ,↘ , ]
+                 9               [null, null,    8]     [ ,  , ]
+                    ↘
+                      8
+
+            TODO: Implementar un buen metodo para graficar el arbol, actualmente utilliza un fix medio malo
+
+
+        */
         if(!t.ArbolVacio()){
             try {
-                dataMat[x + 1][y + 1] = String.valueOf(t.HijoIzq().Raiz());
-                fMat[x][y] = "  \u2198";
+                if(dataMat[x + 1][y + 1] != null) {// Usamos un try para evitar un error al tratar de buscar un hijo izquierdo en una hoja
+                    dataMat[x + 1][y + 1] = "↱" + dataMat[x + 1][y + 1] + "|↳" + t.HijoIzq().Raiz(); // Nos desplazamos 1 para abajo y uno para la derecha, almacenamos ahi el valor del hijo izquierdo
+                }
+                else {
+                    dataMat[x + 1][y + 1] = String.valueOf(t.HijoIzq().Raiz()); // Nos desplazamos 1 para abajo y uno para la derecha, almacenamos ahi el valor del hijo izquierdo
+                } // Guardamos en la matriz de flechas una flecha hacia abajo, por como se imprime en pantalla no necesita offset vertical
+                fMat[x][y] = "  ↘";
             } catch (Exception ignored) {
 
             }
-            try {
-                dataMat[x - 1][y + 1] = String.valueOf(t.HijoDer().Raiz());
-                fMat[x - 1][y] = "  \u2197";
+            try {       // Usamos un try para evitar un error al tratar de buscar un hijo derecho en una hoja
+                if (dataMat[x - 1][y + 1] != null) {
+                    dataMat[x - 1][y + 1] = dataMat[x - 1][y + 1] + "|" + t.HijoDer().Raiz(); // Nos desplazamos 1 para arriba y uno para la derecha, almacenamos ahi el valor del hijo derecho
+                }
+                else {
+                    dataMat[x - 1][y + 1] = String.valueOf(t.HijoDer().Raiz()); // Nos desplazamos 1 para arriba y uno para la derecha, almacenamos ahi el valor del hijo derecho
+                }
+                fMat[x - 1][y] = "  ↗"; // Guardamos en la matriz de flechas una flecha hacia arriba, lo tenemos que desplazar a la fila de arriba para poder mostrarlo en la posicion necesaria
             } catch (Exception ignored) {
 
             }
-            matVal(dataMat, t.HijoIzq(), x + 1, y + 1, fMat);
-            matVal(dataMat, t.HijoDer(), x - 1, y + 1, fMat);
+            matVal(dataMat, t.HijoIzq(), x + 1, y + 1, fMat);   // Llamamos la misma funcion para su hijo izquierdo desplazando la coordenada de raiz 1 a la derecha y uno para abajo
+            matVal(dataMat, t.HijoDer(), x - 1, y + 1, fMat);   // Llamamos la misma funcion para su hijo izquierdo desplazando la coordenada de raiz 1 a la derecha y uno para arriba
         }
     }
 
     public int anchoArbol(TDAABB t){
 
-        return anchoDer(t) + anchoIzq(t) + 1;
+        return anchoDer(t) + anchoIzq(t) + 1;   // Sumamos el ancho de la derecha e izquierda, se le suma 1 para tener en cuenta la raiz
     }
 
-    public int anchoIzq(TDAABB t){
+    public int anchoIzq(TDAABB t){              // Buscamos el ancho desde la raiz hacia la izquierda, sumamos 1 por iteracion de recorrido a la izquierda
         if (t.ArbolVacio()){
             int temp = anchoIz - 1;
             anchoIz = 0;
@@ -85,7 +143,7 @@ public class MainABB {
 
     }
 
-    public int anchoDer(TDAABB t){
+    public int anchoDer(TDAABB t){              // Buscamos el ancho desde la raiz hacia la derecha, sumamos 1 por iteracion de recorrido a la derecha
 
         if (t.ArbolVacio()){
             int temp = anchoDe - 1;
@@ -101,10 +159,10 @@ public class MainABB {
 
     private int altArbolRec(TDAABB t){
 
-        if(!t.ArbolVacio()){
+        if(!t.ArbolVacio()){    // Iteramos pre orden por el arbol por cada iteracion sumamos 1
             alt++;
-            //System.out.println(t.Raiz());
-            if (t.HijoIzq().ArbolVacio() && t.HijoDer().ArbolVacio()){
+
+            if (t.HijoIzq().ArbolVacio() && t.HijoDer().ArbolVacio()){      // Si encontramos una hoja, restamos 1
                 alt--;
             }
             altArbolRec(t.HijoIzq());
@@ -114,13 +172,15 @@ public class MainABB {
 
 
 
-        return alt + 1;
+        return alt + 1;     // Sumamos 1 para tener en cuenta la raiz
     }
 
     public int altArbol(TDAABB t){
         alt = 0;
-        altArbolRec(t);
+        alt = altArbolRec(t);     // Manejo de variables para poder correr alt arbol multiples veces
         return alt + 1;
     }
+
+
 
 }
