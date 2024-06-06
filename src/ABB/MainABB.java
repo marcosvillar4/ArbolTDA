@@ -52,10 +52,14 @@ public class MainABB {
         dataMat[anchoDer(t)][0] = String.valueOf(t.Raiz());
         matVal(dataMat, t, anchoDer(t), 0, fMat);
 
+        /*
         for (int i = 0; i < anchoArbol(t); i++) {
             System.out.println(Arrays.toString(dataMat[i]).replace("null", "   "));
         }
 
+        Graficar matriz cruda
+
+        */
 
 
         for (int i = 0; i < anchoArbol(t); i++) {       // Preparamos e imprimimos la matriz
