@@ -24,8 +24,8 @@ public class MainABB {
     public void graficarABB(TDAABB t){
         System.out.println(anchoArbol(t));
         System.out.println(altArbol(t));
-        String[][] dataMat = new String[anchoArbol(t)][altArbol(t)];
-        String[][] fMat = new String[anchoArbol(t)][altArbol(t)];
+        String[][] dataMat = new String[anchoArbol(t)][altArbol(t)]; 
+        String[][] fMat = new String[anchoArbol(t)][altArbol(t)]; 
 
 
         dataMat[anchoDer(t)][0] = String.valueOf(t.Raiz());
