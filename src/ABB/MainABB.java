@@ -8,6 +8,22 @@ public class MainABB {
     int anchoDe;
     int alt;
 
+    /*
+
+        Clase de funciones extra para arboles:
+
+        TODO: Ver matVal, Metodo para comparacion de estructuras de arboles
+
+
+
+
+
+
+     */
+
+
+
+
     public TDAABB buscarElementoEnABB(TDAABB t, int x){
         if (t.ArbolVacio()){
             return null;
@@ -73,7 +89,8 @@ public class MainABB {
                     ↘
                       8
 
-            TODO: Agregar espacio en la matriz de valores para evitar errores
+            TODO: Implementar un buen metodo para graficar el arbol, actualmente utilliza un fix medio malo
+
 
         */
         if(!t.ArbolVacio()){

@@ -4,7 +4,11 @@ import ABB.MainABB;
 
 public class Main {
     public static void main(String[] args) {
-        //test1();
+        System.out.println("---------- TEST 1 -------------");
+
+        test1();
+
+        System.out.println("---------- TEST 2 -------------");
         test2();
     }
 
@@ -49,8 +53,9 @@ public class Main {
         arbol2.AgregarElem(5);
         arbol2.AgregarElem(10);
         arbol2.AgregarElem(150);
-        arbol2.AgregarElem(80);
         arbol2.AgregarElem(120);
+        arbol2.AgregarElem(80);
+        arbol2.AgregarElem(110);
 
 
 
