@@ -33,13 +33,13 @@ public class MainABB {
         String[][] dataMat = new String[anchoArbol(t)][altArbol(t)];
         String[][] fMat = new String[anchoArbol(t)][altArbol(t)];
 
-
         dataMat[anchoDer(t)][0] = String.valueOf(t.Raiz());
         matVal(dataMat, t, anchoDer(t), 0, fMat);
 
         for (int i = 0; i < anchoArbol(t); i++) {
-            System.out.println(Arrays.toString(dataMat[i]).replace("null", ""));
+            System.out.println(Arrays.toString(dataMat[i]).replace("null", "   "));
         }
+
 
 
         for (int i = 0; i < anchoArbol(t); i++) {       // Preparamos e imprimimos la matriz
@@ -79,7 +79,7 @@ public class MainABB {
         if(!t.ArbolVacio()){
             try {
                 if(dataMat[x + 1][y + 1] != null) {// Usamos un try para evitar un error al tratar de buscar un hijo izquierdo en una hoja
-                    dataMat[x + 1][y + 1] = dataMat[x + 1][y + 1] + "/" + t.HijoIzq().Raiz(); // Nos desplazamos 1 para abajo y uno para la derecha, almacenamos ahi el valor del hijo izquierdo
+                    dataMat[x + 1][y + 1] = "↱" + dataMat[x + 1][y + 1] + "|↳" + t.HijoIzq().Raiz(); // Nos desplazamos 1 para abajo y uno para la derecha, almacenamos ahi el valor del hijo izquierdo
                 }
                 else {
                     dataMat[x + 1][y + 1] = String.valueOf(t.HijoIzq().Raiz()); // Nos desplazamos 1 para abajo y uno para la derecha, almacenamos ahi el valor del hijo izquierdo
@@ -90,7 +90,7 @@ public class MainABB {
             }
             try {       // Usamos un try para evitar un error al tratar de buscar un hijo derecho en una hoja
                 if (dataMat[x - 1][y + 1] != null) {
-                    dataMat[x - 1][y + 1] = dataMat[x - 1][y + 1] + "/" + t.HijoDer().Raiz(); // Nos desplazamos 1 para arriba y uno para la derecha, almacenamos ahi el valor del hijo derecho
+                    dataMat[x - 1][y + 1] = dataMat[x - 1][y + 1] + "|" + t.HijoDer().Raiz(); // Nos desplazamos 1 para arriba y uno para la derecha, almacenamos ahi el valor del hijo derecho
                 }
                 else {
                     dataMat[x - 1][y + 1] = String.valueOf(t.HijoDer().Raiz()); // Nos desplazamos 1 para arriba y uno para la derecha, almacenamos ahi el valor del hijo derecho
@@ -159,5 +159,7 @@ public class MainABB {
         alt = altArbolRec(t);     // Manejo de variables para poder correr alt arbol multiples veces
         return alt + 1;
     }
+
+
 
 }

@@ -4,6 +4,11 @@ import ABB.MainABB;
 
 public class Main {
     public static void main(String[] args) {
+        //test1();
+        test2();
+    }
+
+    static void test1(){
         ABB arbol = new ABB();
         MainABB funcarb = new MainABB();
         arbol.InicializarArbol();
@@ -29,5 +34,26 @@ public class Main {
         //System.out.println(funcarb.altArbol(arbol));
 
         funcarb.graficarABB(arbol);
+    }
+
+    static void test2(){
+        ABB arbol2 = new ABB();
+        MainABB funcarb = new MainABB();
+        arbol2.InicializarArbol();
+        arbol2.AgregarElem(50);
+        arbol2.AgregarElem(100);
+        arbol2.AgregarElem(15);
+        arbol2.AgregarElem(25);
+        arbol2.AgregarElem(75);
+        arbol2.AgregarElem(20);
+        arbol2.AgregarElem(5);
+        arbol2.AgregarElem(10);
+        arbol2.AgregarElem(150);
+        arbol2.AgregarElem(80);
+        arbol2.AgregarElem(120);
+
+
+
+        funcarb.graficarABB(arbol2);
     }
 }
