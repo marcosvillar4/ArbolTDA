@@ -156,7 +156,7 @@ public class MainABB {
 
     public int altArbol(TDAABB t){
         alt = 0;
-        altArbolRec(t);     // Manejo de variables para poder correr alt arbol multiples veces
+        alt = altArbolRec(t);     // Manejo de variables para poder correr alt arbol multiples veces
         return alt + 1;
     }
 
