@@ -37,6 +37,11 @@ public class MainABB {
         dataMat[anchoDer(t)][0] = String.valueOf(t.Raiz());
         matVal(dataMat, t, anchoDer(t), 0, fMat);
 
+        for (int i = 0; i < anchoArbol(t); i++) {
+            System.out.println(Arrays.toString(dataMat[i]).replace("null", ""));
+        }
+
+
         for (int i = 0; i < anchoArbol(t); i++) {       // Preparamos e imprimimos la matriz
             String dataString = Arrays.toString(dataMat[i]).replaceAll("[],]+", "  ").replace("[" ," ");
             System.out.println(dataString.replace("null", "  "));
@@ -72,15 +77,25 @@ public class MainABB {
 
         */
         if(!t.ArbolVacio()){
-            try {       // Usamos un try para evitar un error al tratar de buscar un hijo izquierdo en una hoja
-                dataMat[x + 1][y + 1] = String.valueOf(t.HijoIzq().Raiz()); // Nos desplazamos 1 para abajo y uno para la derecha, almacenamos ahi el valor del hijo izquierdo
-                fMat[x][y] = "  \u2198"; // Guardamos en la matriz de flechas una flecha hacia abajo, por como se imprime en pantalla no necesita offset vertical
+            try {
+                if(dataMat[x + 1][y + 1] != null) {// Usamos un try para evitar un error al tratar de buscar un hijo izquierdo en una hoja
+                    dataMat[x + 1][y + 1] = dataMat[x + 1][y + 1] + "/" + t.HijoIzq().Raiz(); // Nos desplazamos 1 para abajo y uno para la derecha, almacenamos ahi el valor del hijo izquierdo
+                }
+                else {
+                    dataMat[x + 1][y + 1] = String.valueOf(t.HijoIzq().Raiz()); // Nos desplazamos 1 para abajo y uno para la derecha, almacenamos ahi el valor del hijo izquierdo
+                } // Guardamos en la matriz de flechas una flecha hacia abajo, por como se imprime en pantalla no necesita offset vertical
+                fMat[x][y] = "  ↘";
             } catch (Exception ignored) {
 
             }
             try {       // Usamos un try para evitar un error al tratar de buscar un hijo derecho en una hoja
-                dataMat[x - 1][y + 1] = String.valueOf(t.HijoDer().Raiz()); // Nos desplazamos 1 para arriba y uno para la derecha, almacenamos ahi el valor del hijo derecho
-                fMat[x - 1][y] = "  \u2197"; // Guardamos en la matriz de flechas una flecha hacia arriba, lo tenemos que desplazar a la fila de arriba para poder mostrarlo en la posicion necesaria
+                if (dataMat[x - 1][y + 1] != null) {
+                    dataMat[x - 1][y + 1] = dataMat[x - 1][y + 1] + "/" + t.HijoDer().Raiz(); // Nos desplazamos 1 para arriba y uno para la derecha, almacenamos ahi el valor del hijo derecho
+                }
+                else {
+                    dataMat[x - 1][y + 1] = String.valueOf(t.HijoDer().Raiz()); // Nos desplazamos 1 para arriba y uno para la derecha, almacenamos ahi el valor del hijo derecho
+                }
+                fMat[x - 1][y] = "  ↗"; // Guardamos en la matriz de flechas una flecha hacia arriba, lo tenemos que desplazar a la fila de arriba para poder mostrarlo en la posicion necesaria
             } catch (Exception ignored) {
 
             }
