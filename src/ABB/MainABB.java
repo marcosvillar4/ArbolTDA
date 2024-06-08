@@ -181,6 +181,16 @@ public class MainABB {
         return alt + 1;
     }
 
-
+    public boolean MismaForma(TDAABB a, TDAABB b) {
+        if (a.ArbolVacio() && b.ArbolVacio()) {
+            return true; // Ambos árboles están vacíos
+        } else if (a.ArbolVacio() || b.ArbolVacio()) {
+            return false; // Uno está vacío y el otro no (DIFERENCIA de estructura)
+        } else {
+            // Ambos árboles no están vacíos, comprobar hijos izquierdo y derecho
+            return MismaForma(a.HijoIzq(), b.HijoIzq()) && MismaForma(a.HijoDer(), b.HijoDer());
+            //Con un falso recursivo, se vuelven falsas todas las comparaciones anteriores, resultando en un return false
+        }
+    }
 
 }

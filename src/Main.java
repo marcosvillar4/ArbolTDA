@@ -57,7 +57,7 @@ public class Main {
         arbol2.AgregarElem(80);
         arbol2.AgregarElem(110);
 
-
+        System.out.println(funcarb.MismaForma(arbol2, arbol2));
 
         funcarb.graficarABB(arbol2);
     }
