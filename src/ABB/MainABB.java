@@ -36,7 +36,7 @@ public class MainABB {
         }
     }
 
-    public void graficarABB(TDAABB t){
+    public void graficarABBalt(TDAABB t){
         /*
 
             Metodo para graficar el arbol:
@@ -193,4 +193,17 @@ public class MainABB {
         }
     }
 
+    public void graficarABB (TDAABB t){
+        MostrarABB(t, -1);
+    }
+    private void MostrarABB(TDAABB a, int nivel) {
+        if (!a.ArbolVacio()) {
+            MostrarABB(a.HijoDer(), nivel+1);
+            for (int i = 0; i < nivel; i++)
+                System.out.print("\t");
+            System.out.print(a.Raiz());
+            System.out.println();
+            MostrarABB(a.HijoIzq(), nivel+1);
+        }
+    }
 }
